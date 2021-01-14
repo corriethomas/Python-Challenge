@@ -10,34 +10,23 @@ with open(election_data) as csvfile:
 
     election_header = next(election_reader)
 
-    #Print header to test code
-    #print(election_header)
-
-    #List the candidates who received votes and count the total votes
+    #Create list to store the candidates who received votes
     cand_name = []
-    # total_votes = []
 
-    #Add to total number of votes if already listed
+    #Skip candidate if already listed in cand_name
     for row in election_reader:
         if row[2] in cand_name:
             continue
 
-    #Add new candidate if not listed, and add to total number of votes    
+    #Add new candidate if not listed in cand_name 
         else: cand_name.append(row[2])
-    
-    # vote_sum = sum(total_votes)
-    # print(vote_sum)
-  
-    # #Start dictionary
-    # cand_dict = {"candidates": [cand_name]}
+     
     print(cand_name)
 
 with open(election_data) as csvfile:
     election_reader = csv.reader(csvfile, delimiter=",")
 
-
-    #Find how many votes each candidate received
-    #cand_votes = [0, 0, 0, 0]
+    #Using the list of candidates we made, create a tracker to store how many votes each candidate received
     Khan_votes = []
     Correy_votes = []
     Li_votes = []
@@ -53,6 +42,7 @@ with open(election_data) as csvfile:
         elif row[2] == "O'Tooley":
             Otooley_votes.append(1)
 
+    #Add all votes stored in each candidate's tracker
     Khan_sum = sum(Khan_votes)
     print(Khan_sum)
 
@@ -65,7 +55,7 @@ with open(election_data) as csvfile:
     Otooley_sum = sum(Otooley_votes)
     print(Otooley_sum)
 
-    #Find the total number of votes
+    #Find the total number of all votes
     Totalvotes = Khan_sum + Correy_sum + Li_sum + Otooley_sum
     print(Totalvotes)
 
@@ -82,6 +72,12 @@ with open(election_data) as csvfile:
     Otooley_percent = Otooley_sum / Totalvotes
     print(Otooley_percent)
 
+    #Create dictionary to store candidate name and votes in one place
+    # cand_dict = {}
+    # cand_dict = {"Name": cand_name,
+    # "Votes": Khan_sum, Correy_sum, Li_sum, Otooley_sum}
+    # print(cand_dict)
+        
     #Find the winner based on popular votes
 
     #Print the analysis
