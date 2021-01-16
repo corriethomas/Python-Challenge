@@ -20,8 +20,6 @@ with open(election_data) as csvfile:
 
     #Add new candidate if not listed in cand_name 
         else: cand_name.append(row[2])
-     
-    print(cand_name)
 
 with open(election_data) as csvfile:
     election_reader = csv.reader(csvfile, delimiter=",")
@@ -44,42 +42,32 @@ with open(election_data) as csvfile:
 
     #Add all votes stored in each candidate's tracker
     Khan_sum = sum(Khan_votes)
-    #print(Khan_sum)
 
     Correy_sum = sum(Correy_votes)    
-    #print(Correy_sum)
     
     Li_sum = sum(Li_votes)
-    #print(Li_sum)
 
     Otooley_sum = sum(Otooley_votes)
-    #print(Otooley_sum)
 
     #Find the total number of all votes
     Totalvotes = Khan_sum + Correy_sum + Li_sum + Otooley_sum
-    #print(Totalvotes)
 
     #Calculate and format the percent of votes each candidate won
     Khan_percent = Khan_sum / Totalvotes
     kpercent = "{:.3%}".format(Khan_percent)
-    #print(kpercent)
 
     Correy_percent = Correy_sum / Totalvotes
     cpercent = "{:.3%}".format(Correy_percent)
-    #print(cpercent)
 
     Li_percent = Li_sum / Totalvotes
     lpercent = "{:.3%}".format(Li_percent)
-    #print(lpercent)
 
     Otooley_percent = Otooley_sum / Totalvotes
     opercent = "{:.3%}".format(Otooley_percent)
-    #print(opercent)
 
     #Create dictionary to store candidate name and votes in one place
     cand_dict = {}
     cand_dict = {"Name": cand_name, "Votes": [Khan_sum, Correy_sum, Li_sum, Otooley_sum]}
-    #print(cand_dict)
 
 with open(election_data) as csvfile:
     election_reader = csv.reader(csvfile, delimiter=",")     
@@ -96,10 +84,10 @@ with open(election_data) as csvfile:
         winner = cand_dict["Name"][2]
     elif winner_votes == Otooley_sum:
         winner = cand_dict["Name"][3]
-    #print(winner)
 
     #Print the analysis
-    print("Election Results")
+    print('\n'
+    "Election Results")
     print("----------------------")
     print("Total Votes: " + str(Totalvotes))
     print("----------------------")
@@ -109,4 +97,4 @@ with open(election_data) as csvfile:
     f'{cand_dict["Name"][3]}: ' + str(opercent) + ' (' + str(Otooley_sum) + ')') 
     print("----------------------")
     print("Winner: " + winner)
-    print("----------------------")
+    print("----------------------" '\n')
