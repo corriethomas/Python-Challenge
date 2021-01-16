@@ -39,7 +39,7 @@ print("Total Months: " + str(totalmonths))
 print("Total: " + "$" + str(net_pl))
 print("Average Change: ")
 print("Greatest Increase in Profits: ")
-print("Greatest Decrease in Profits: ")
+print("Greatest Decrease in Profits: " + '\n')
 
 #Open results text file
 results_file = os.path.join("Analysis", "PyBank_Results.txt")
