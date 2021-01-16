@@ -13,9 +13,14 @@ with open(budget_data) as budget_csv:
 
 #Calculate the total number of months included in the dataset
     totalmonths = 0
+    net_pl = 0
+    
     for row in budget_reader:
+        row[1] = int(row[1])
         totalmonths += 1
+        net_pl = net_pl + row[1]
     print(totalmonths)
+    print(net_pl)
 
 #Calculate the total amount of profit/losses over entire period
 
