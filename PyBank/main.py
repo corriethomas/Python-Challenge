@@ -9,8 +9,13 @@ with open(budget_data) as budget_csv:
     budget_reader = csv.reader(budget_csv, delimiter=",")
 
     budget_header = next(budget_reader)
+    #print(budget_header)
 
 #Calculate the total number of months included in the dataset
+    totalmonths = 0
+    for row in budget_reader:
+        totalmonths += 1
+    print(totalmonths)
 
 #Calculate the total amount of profit/losses over entire period
 
@@ -19,10 +24,6 @@ with open(budget_data) as budget_csv:
 #Calculate the greatest increase in profits (date and amount) over entire period
 
 #Calculate the greatest decrease in losses (date and amount) over entire period
-
-
-#Print header to test code
-#print(budget_header)
 
 #Print results
 print("Financial Analysis")
