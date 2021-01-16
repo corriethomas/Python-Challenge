@@ -85,9 +85,8 @@ with open(election_data) as csvfile:
     elif winner_votes == Otooley_sum:
         winner = cand_dict["Name"][3]
 
-    #Print the analysis
-    print('\n'
-    "Election Results")
+    #Print the analysis in the terminal
+    print('\n',"Election Results")
     print("----------------------")
     print("Total Votes: " + str(Totalvotes))
     print("----------------------")
@@ -98,3 +97,28 @@ with open(election_data) as csvfile:
     print("----------------------")
     print("Winner: " + winner)
     print("----------------------" '\n')
+
+#Open results text file
+file = os.path.join("Analysis", "PyPoll_Results.txt")
+with open(file, 'w') as text:
+    
+    #Set variables to be printed
+    election_results = ('Election Results\n')
+    space = ('----------------------\n')
+    total_votes = (('Total Votes: ' + str(Totalvotes)  + '\n'))
+    cand_votes = (f'{cand_dict["Name"][0]}: ' + str(kpercent) + ' (' + str(Khan_sum) + ')' '\n' 
+    f'{cand_dict["Name"][1]}: ' + str(cpercent) + ' (' + str(Correy_sum) + ')' '\n'
+    f'{cand_dict["Name"][2]}: ' + str(lpercent) + ' (' + str(Li_sum) + ')' '\n'
+    f'{cand_dict["Name"][3]}: ' + str(opercent) + ' (' + str(Otooley_sum) + ')' + '\n')
+    winner_line = ('Winner: ' + str(winner) + '\n')
+
+    #Print/write to text file
+    text.write(election_results)
+    text.write(space)
+    text.write(total_votes)
+    text.write(space)
+    text.write(cand_votes)
+    text.write(space)
+    text.write(winner_line)
+    text.write(space)
+    text.close()
