@@ -121,4 +121,3 @@ with open(file, 'w') as text:
     text.write(space)
     text.write(winner_line)
     text.write(space)
-    text.close()
