@@ -25,19 +25,6 @@ with open(budget_data) as budget_csv:
         net_pl = net_pl + row[1]
         prof_or_loss.append(row[1])
         month.append(row[0])
-        # print(totalmonths)
-        # print(net_pl)
-        # print(prof_or_loss)
-        # print(month)
-
-    #totalmonths = float(totalmonths)
-
-        # change_diff = prof_or_loss[1] - prof_or_loss[0]
-        # change.append(change_diff)
-        # print(change)
-        # change_diff = [prof_or_loss[x + 1] - prof_or_loss[x]]
-        # change.append(change_diff)
-        # print(str(change))
 
 #Calculate the total changes in profit/losses over entire period, then find average of changes
 
