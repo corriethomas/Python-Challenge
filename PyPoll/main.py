@@ -73,12 +73,26 @@ with open(election_data) as csvfile:
     print(Otooley_percent)
 
     #Create dictionary to store candidate name and votes in one place
-    # cand_dict = {}
-    # cand_dict = {"Name": cand_name,
-    # "Votes": Khan_sum, Correy_sum, Li_sum, Otooley_sum}
-    # print(cand_dict)
-        
+    cand_dict = {}
+    cand_dict = {"Name": cand_name, "Votes": [Khan_sum, Correy_sum, Li_sum, Otooley_sum]}
+    print(cand_dict)
+
+with open(election_data) as csvfile:
+    election_reader = csv.reader(csvfile, delimiter=",")     
+
     #Find the winner based on popular votes
+    winner_votes = max(cand_dict["Votes"])
+    winner = str
+
+    if winner_votes == Khan_sum:
+        winner = cand_dict["Name"][0]
+    elif winner_votes == Correy_sum:
+        winner = cand_dict["Name"][1]
+    elif winner_votes == Li_sum:
+        winner = cand_dict["Name"][2]
+    elif winner_votes == Otooley_sum:
+        winner = cand_dict["Name"][3]
+    print(winner)
 
     #Print the analysis
     print("Election Results")
