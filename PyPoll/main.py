@@ -59,18 +59,22 @@ with open(election_data) as csvfile:
     Totalvotes = Khan_sum + Correy_sum + Li_sum + Otooley_sum
     print(Totalvotes)
 
-    #Calculate the percent of votes each candidate won
+    #Calculate and format the percent of votes each candidate won
     Khan_percent = Khan_sum / Totalvotes
-    print(Khan_percent)
+    kpercent = "{:.3%}".format(Khan_percent)
+    print(kpercent)
 
     Correy_percent = Correy_sum / Totalvotes
-    print(Correy_percent)
+    cpercent = "{:.3%}".format(Correy_percent)
+    print(cpercent)
 
     Li_percent = Li_sum / Totalvotes
-    print(Li_percent)
+    lpercent = "{:.3%}".format(Li_percent)
+    print(lpercent)
 
     Otooley_percent = Otooley_sum / Totalvotes
-    print(Otooley_percent)
+    opercent = "{:.3%}".format(Otooley_percent)
+    print(opercent)
 
     #Create dictionary to store candidate name and votes in one place
     cand_dict = {}
