@@ -2,7 +2,7 @@
 import os
 import csv
 
-budget_data = os.path.join("Resources", "budget_data.csv")
+budget_data = os.path.join("budget_data.csv")
 
 #Open csv, set delimiter, and read header
 with open(budget_data) as budget_csv:
@@ -28,8 +28,17 @@ with open(budget_data) as budget_csv:
         current_prof_or_loss.append(row[1])
         previous_prof_or_loss.append(current_prof_or_loss[-1])
         change_in_prof_or_loss = ([current_prof_or_loss[row]-previous_prof_or_loss[row] for row in range(len(current_prof_or_loss))])
+        #print(current_prof_or_loss)
+        #print(previous_prof_or_loss)
+        #print(change_in_prof_or_loss)
 
 #Calculate the total changes in profit/losses over entire period, then find average of changes
+    
+    totalchanges = sum(change_in_prof_or_loss)
+    #avgchange = totalchanges/totalmonths
+    print(totalchanges)
+    #print(avgchange)
+
 
 #Calculate the greatest increase in profits (date and amount) over entire period
 
@@ -45,21 +54,21 @@ print("Greatest Increase in Profits: ")
 print("Greatest Decrease in Profits: " + '\n')
 
 #Open results text file
-results_file = os.path.join("Analysis", "PyBank_Results.txt")
-with open(results_file, 'w') as text:
-    financial_analysis = ("Financial Analysis" + '\n')
-    space = ("---------------------------------" + '\n')
-    total_months = ("Total Months: " + str(totalmonths) + '\n')
-    total_prof_or_loss = ("Total: " + "$" + str(net_pl) + '\n')
-    average_change = ("Average Change: " + '\n')
-    greatest_increase = ("Greatest Increase in Profits: " + '\n')
-    greatest_decrease = ("Greatest Decrease in Profits: " + '\n')
+# results_file = os.path.join("Analysis", "PyBank_Results.txt")
+# with open(results_file, 'w') as text:
+#     financial_analysis = ("Financial Analysis" + '\n')
+#     space = ("---------------------------------" + '\n')
+#     total_months = ("Total Months: " + str(totalmonths) + '\n')
+#     total_prof_or_loss = ("Total: " + "$" + str(net_pl) + '\n')
+#     average_change = ("Average Change: " + '\n')
+#     greatest_increase = ("Greatest Increase in Profits: " + '\n')
+#     greatest_decrease = ("Greatest Decrease in Profits: " + '\n')
 
-    #Print/write to text file
-    text.write(financial_analysis)
-    text.write(space)
-    text.write(total_months)
-    text.write(total_prof_or_loss)
-    text.write(average_change)
-    text.write(greatest_increase)
-    text.write(greatest_decrease)
+#     #Print/write to text file
+#     text.write(financial_analysis)
+#     text.write(space)
+#     text.write(total_months)
+#     text.write(total_prof_or_loss)
+#     text.write(average_change)
+#     text.write(greatest_increase)
+#     text.write(greatest_decrease)
