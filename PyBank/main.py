@@ -12,7 +12,7 @@ with open(budget_data) as budget_csv:
     #print(budget_header)
 
 #Calculate the total number of months included in the dataset, and sum the total profit or loss
-#Set the lists we want to store our months and profit/losses to
+#Set the lists we want to store our months and profit/losses
     totalmonths = 0
     net_pl = 0
     current_prof_or_loss = []
@@ -32,24 +32,36 @@ with open(budget_data) as budget_csv:
         change_in_prof_or_loss = ([current_prof_or_loss[row]-previous_prof_or_loss[row] for row in range(len(current_prof_or_loss))])
 
 #Calculate the total changes in profit/losses over entire period, then find average of changes
+    #Remove first month of profit or loss because it wasn't a 'change', it was just the overall profit or loss
     change_in_prof_or_loss.pop(0)
     totalchanges = sum(change_in_prof_or_loss)
+    
+    #Remove one month from our total months since we removed one value in our list of profit/loss changes, then find the average
     avgchange = totalchanges/(totalmonths-1)
+    avg_change_formatted = "${:.2f}".format(avgchange)
 
 #Calculate the greatest increase in profits (date and amount) over entire period
+    #Remove the first date since we removed the first value in our list of profit/loss change
     month.pop(0)
+    
+    #Create dictionary to store our dates and changes in profits/losses
     budget_dict = ({"Month": month, "Change in Prof or Loss": change_in_prof_or_loss})
 
+    max_change = max(budget_dict["Change in Prof or Loss"])
+    max_formatted = "(${:.0f})".format(max_change)
+
 #Calculate the greatest decrease in losses (date and amount) over entire period
+    min_change = min(budget_dict["Change in Prof or Loss"])
+    min_formatted = "(${:.0f})".format(min_change)
 
 #Print results
 print('\n',"Financial Analysis")
 print("---------------------------------")
 print("Total Months: " + str(totalmonths))
 print("Total: " + "$" + str(net_pl))
-print("Average Change: ")
-print("Greatest Increase in Profits: ")
-print("Greatest Decrease in Profits: " + '\n')
+print("Average Change: " + str(avg_change_formatted))
+print("Greatest Increase in Profits: " + str(max_formatted))
+print("Greatest Decrease in Profits: " + str(min_formatted) + '\n')
 
 #Open results text file
 results_file = os.path.join("Analysis", "PyBank_Results.txt")
@@ -58,9 +70,9 @@ with open(results_file, 'w') as text:
     space = ("---------------------------------" + '\n')
     total_months = ("Total Months: " + str(totalmonths) + '\n')
     total_prof_or_loss = ("Total: " + "$" + str(net_pl) + '\n')
-    average_change = ("Average Change: " + '\n')
-    greatest_increase = ("Greatest Increase in Profits: " + '\n')
-    greatest_decrease = ("Greatest Decrease in Profits: " + '\n')
+    average_change = ("Average Change: " + str(avg_change_formatted) + '\n')
+    greatest_increase = ("Greatest Increase in Profits: " + str(max_formatted) + '\n')
+    greatest_decrease = ("Greatest Decrease in Profits: " + str(min_formatted) + '\n')
 
     #Print/write to text file
     text.write(financial_analysis)
