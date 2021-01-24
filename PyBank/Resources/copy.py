@@ -33,15 +33,17 @@ with open(budget_data) as budget_csv:
         #print(change_in_prof_or_loss)
 
 #Calculate the total changes in profit/losses over entire period, then find average of changes
-    
+    change_in_prof_or_loss.pop(0)
+    print(change_in_prof_or_loss)
     totalchanges = sum(change_in_prof_or_loss)
-    #avgchange = totalchanges/totalmonths
+    avgchange = totalchanges/(totalmonths-1)
     print(totalchanges)
-    #print(avgchange)
-
+    print(avgchange)
 
 #Calculate the greatest increase in profits (date and amount) over entire period
-
+    month.pop(0)
+    budget_dict = ({"Month": month, "Change in Prof or Loss": change_in_prof_or_loss})
+    print(budget_dict)
 #Calculate the greatest decrease in losses (date and amount) over entire period
 
 #Print results

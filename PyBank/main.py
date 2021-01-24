@@ -27,11 +27,18 @@ with open(budget_data) as budget_csv:
         net_pl = net_pl + row[1]
         current_prof_or_loss.append(row[1])
         previous_prof_or_loss.append(current_prof_or_loss[-1])
+        
+        #Found help with list comprehensions from https://www.geeksforgeeks.org/python-subtract-two-list-elements-if-element-in-first-list-is-greater/
         change_in_prof_or_loss = ([current_prof_or_loss[row]-previous_prof_or_loss[row] for row in range(len(current_prof_or_loss))])
 
 #Calculate the total changes in profit/losses over entire period, then find average of changes
+    change_in_prof_or_loss.pop(0)
+    totalchanges = sum(change_in_prof_or_loss)
+    avgchange = totalchanges/(totalmonths-1)
 
 #Calculate the greatest increase in profits (date and amount) over entire period
+    month.pop(0)
+    budget_dict = ({"Month": month, "Change in Prof or Loss": change_in_prof_or_loss})
 
 #Calculate the greatest decrease in losses (date and amount) over entire period
 
