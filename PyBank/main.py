@@ -50,18 +50,25 @@ with open(budget_data) as budget_csv:
     max_change = max(budget_dict["Change in Prof or Loss"])
     max_formatted = "(${:.0f})".format(max_change)
 
+    #Set the max_change to be our index so we can locate max_month (reviewed this concept in our study group)
+    max_index = budget_dict["Change in Prof or Loss"].index(max_change)
+    max_month = budget_dict["Month"][max_index]
+    
 #Calculate the greatest decrease in losses (date and amount) over entire period
     min_change = min(budget_dict["Change in Prof or Loss"])
     min_formatted = "(${:.0f})".format(min_change)
 
+    min_index = budget_dict["Change in Prof or Loss"].index(min_change)
+    min_month = budget_dict["Month"][min_index]
+  
 #Print results
 print('\n',"Financial Analysis")
 print("---------------------------------")
 print("Total Months: " + str(totalmonths))
 print("Total: " + "$" + str(net_pl))
 print("Average Change: " + str(avg_change_formatted))
-print("Greatest Increase in Profits: " + str(max_formatted))
-print("Greatest Decrease in Profits: " + str(min_formatted) + '\n')
+print("Greatest Increase in Profits: " + max_month + " " + str(max_formatted))
+print("Greatest Decrease in Profits: " + min_month + " " + str(min_formatted) + '\n')
 
 #Open results text file
 results_file = os.path.join("Analysis", "PyBank_Results.txt")
@@ -71,8 +78,8 @@ with open(results_file, 'w') as text:
     total_months = ("Total Months: " + str(totalmonths) + '\n')
     total_prof_or_loss = ("Total: " + "$" + str(net_pl) + '\n')
     average_change = ("Average Change: " + str(avg_change_formatted) + '\n')
-    greatest_increase = ("Greatest Increase in Profits: " + str(max_formatted) + '\n')
-    greatest_decrease = ("Greatest Decrease in Profits: " + str(min_formatted) + '\n')
+    greatest_increase = ("Greatest Increase in Profits: " + max_month + " " + str(max_formatted) + '\n')
+    greatest_decrease = ("Greatest Decrease in Profits: " + min_month + " " + str(min_formatted) + '\n')
 
     #Print/write to text file
     text.write(financial_analysis)
